@@ -87,7 +87,6 @@ app.post("/products", (req, res) => {
 /*  let newProduct = req.body
     newProduct.id = nanoid()
     products.push(newProduct)
-
     res.json("New Product added!") */
 
     products.push({...req.body, ...{id: nanoid()}})
