@@ -1,13 +1,6 @@
 // External API
 GET http://localhost:3000/api/makeup
 
-
-###
-
-// Data.json
-GET http://localhost:3000/data.json  
-
-
 ###
 
 GET http://localhost:3000/api/products

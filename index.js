@@ -13,14 +13,9 @@ app.get("/api/makeup", async (req, res) => {
   try {
     const response = await fetch('https://makeup-api.herokuapp.com/api/v1/products.json')
     const data = await response.json() 
-    console.log(data)
-    
     res.json(data) 
-
   }catch(err) {
-    /* console.error(err)
-    res.json(err) */
-    res.status(400).json(err.message)
+    console.error(err)
   }
 })
 
@@ -50,7 +45,6 @@ app.get("/api/products", (req, res) => {
   try {
     res.json(productList)
   } catch(err) {
-      // res.status(500).json(err.message)
       console.error(err)
   }
 })
@@ -59,9 +53,9 @@ app.get("/api/products", (req, res) => {
 app.post("/api/products", (req, res) => { 
   try { 
     productList.push({...req.body, ...{id: nanoid()}})
-    res.json("Söker efter produkten!")  
+    res.json("Söker efter produkt!")  
   } catch (err) {
-    res.status(400).json(err.message)
+    console.error(err)
   }
 
 })
