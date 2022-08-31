@@ -8,7 +8,6 @@ const loadProducts = async (event) => {
     try {
         const response = await fetch("http://localhost:3000/api/products");
         const data = await response.json();
-        console.log(data)
 
         const container = document.getElementById("makeupData") 
         container.innerHTML = ""
@@ -94,10 +93,6 @@ const saveProduct = async (event) => {
     } catch(err) {
         console.error(err)
     }
-
-    let brand = "";
-    let product = "";
-    
 }
 
 document.getElementById("saveBtn").addEventListener("click", saveProduct)
