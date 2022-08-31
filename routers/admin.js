@@ -2,6 +2,8 @@ import express from "express"
 import { nanoid } from 'nanoid'
 // Skapa router
 
+/* Kolla igenom Router igen.. */
+
 export const router = express.Router()
 
 // Produktlista till inlämningsuppgiften 
