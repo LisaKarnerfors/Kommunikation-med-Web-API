@@ -11,6 +11,15 @@ Beskrivning:
 I den här inlämningen skall du skapa en hemsida som visar information hämtat ifrån ert egenbyggda API. Erat egna API skall även hämta data ifrån ett externt API och sedan skicka datan vidare till klienten. Ert egna API skall vara en Express-server byggd i NodeJS som hanterar en valfri resurs. För G skall det finnas en endpoint för att hämta samtliga entiteter ifrån er resurs (GET) samt en endpoint för att skapa en ny entitet (POST). 
 
 
+Installation hur man startar projektet: 
+1. Installera node i terminalen
+2. Installera npm init y 
+3. Installera npm i express
+4. Installera npm nodemon
+5. I json-filen lägger du till "type": "module", & "start": "nodemon index.js"
+6. Därefter skriver du in npm start i terminalen för att starta projektet.
+
+
 Krav för godkänt:
 
 1.Skapa ett API baserat på en valfri resurs (GET & POST) - CHECK
