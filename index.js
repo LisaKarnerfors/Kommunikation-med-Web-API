@@ -1,97 +1,65 @@
 import express from 'express'
-import axios from 'axios'
+import fetch from 'node-fetch'
 import { nanoid } from 'nanoid'
-/* import { router as adminRouter } from "./routers/admin.js" // Ger router ett namn (as) */
 
 const app = express()
 const port = 3000
 
-app.use(express.json())
+app.use(express.json()) 
 app.use("/", express.static("client"))
 
-/* app.use("/admin", adminRouter) 
-app.use("/admin", adminRouter) // Två routers i inlämningsuppgiften. En för vår resurs och en för externa api:t
-*/
 
-// Hämtar externt API
 app.get("/api/makeup", async (req, res) => {
-
   try {
+    const response = await fetch('https://makeup-api.herokuapp.com/api/v1/products.json')
+    const data = await response.json() 
+    console.log(data)
+    
+    res.json(data) 
 
-  const options = {
-    method: 'GET',
-    url: 'https://sephora.p.rapidapi.com/auto-complete',
-    params: { q: 'eyeshadows' },
-    headers: {
-      'X-RapidAPI-Key': 'cb855dcb7amsh4c1c5fe2e1b4328p1eb738jsnc16abd41bfac',
-      'X-RapidAPI-Host': 'sephora.p.rapidapi.com'
-    }  
-  }
-
-  axios.request(options).then(function (response) {
-    console.log(response.data);
-    res.json(response.data)
-  }).catch(function (error) {
-    console.error(error);
-  });
-
-  } catch(err) {
+  }catch(err) {
+    /* console.error(err)
+    res.json(err) */
     res.status(400).json(err.message)
   }
 })
 
 
-// Lista 
-let products = [
+let productList = [
   {
     id: nanoid(),
-    productName: "Natasha Denona",
-    brandName: "Sunset Eyeshadow Palette"
+    brandName: "Natasha Denona",
+    productName: "Sunset Eyeshadow Palette",
+    image: "411761_swatch.png"
   },
   {
     id: nanoid(),
-    productName: "Dior",
-    brandName: "BACKSTAGE EyeShadow Palette"
+    brandName: "Dior",
+    productName: "BACKSTAGE EyeShadow Palette",
+    image: "584040_swatch.png"
   },
   {
     id: nanoid(),
-    productName: "Sephora Collection",
-    brandName: "Merry & Bright Eyeshadow Palette"
+    brandName: "Sephora Collection",
+    productName: "Merry & Bright Eyeshadow Palette",
+    image: "532112_swatch.png"
   }
 ]
 
-// Endpoint GET
-app.get("/products", (req, res) => {
-  
+app.get("/api/products", (req, res) => {
   try {
-    res.json(products)
-  } catch (err) {
-    res.status(500).json(err.message)
+    res.json(productList)
+  } catch(err) {
+      // res.status(500).json(err.message)
+      console.error(err)
   }
 })
 
-// Endpoint POST
-app.post("/products", (req, res) => {
-  
-  try {
-    if (!req.body || (!req.body.productName || !req.body.brandName)) {
-      throw new Error("Data was not provided correctly!")
-    }
 
-    const productExist = products.find(product => product.productName == req.body.productName)
-
-    if (productExist) {
-      throw new Error("Product already exist")
-    }
-
-/*  let newProduct = req.body
-    newProduct.id = nanoid()
-    products.push(newProduct)
-    res.json("New Product added!") */
-
-    products.push({...req.body, ...{id: nanoid()}})
-    res.json({status: "New product added!"}) 
-
+app.post("/api/products", (req, res) => { 
+  try { 
+    productList.push({...req.body, ...{id: nanoid()}})
+    res.json("Söker efter produkten!")  
   } catch (err) {
     res.status(400).json(err.message)
   }

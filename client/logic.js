@@ -1,66 +1,107 @@
-/* Async/Await gör det lättare att skriva löften . Nyckelordet 'async' före en funktion gör att funktionen alltid returnerar ett löfte. Och nyckelordet await används i async-funktioner, vilket gör att programmet väntar tills löftet löser sig. */
-
 async function onLoad() {
-    await getProducts()
- 
+   await loadProducts()
+   await getExternalApi()
 }
 
-const getProducts = async (event) => {
+const loadProducts = async (event) => {
 
     try {
-        // Fetch-anrop GET
-        const response = await fetch("http://localhost:3000/products")
-        const data = await response.json()
+        const response = await fetch("http://localhost:3000/api/products");
+        const data = await response.json();
         console.log(data)
 
-        for (let i = 0; i < data.length; i++) {
-            const product = data[i]
-            console.log(product.productName)
+        const container = document.getElementById("makeupData") 
+        container.innerHTML = ""
 
-        const container = document.getElementById("productData")
-        let productContainer = document.createElement("div")
-        productContainer.classList.add("productDiv")
-        let title = document.createElement("a")
-        title.innerHTML = product.productName + product.brandName
-        container.append(productContainer)
-        productContainer.append(title) 
-        
-        }
+        for (let i = 0; i < data.length; i++) { 
+            const product = data[i] 
 
-    } catch(err) {
-        console.error(err)
-    }
-}
+            let productContainer = document.createElement("div")
+            productContainer.classList.add("productDiv")
 
-const addProducts = async (event) => {
-    
-    try {
-        // Skapar objektet som ska sparas
-        const newProduct = {
-            brandName: "Chanel",
-            productName: "Moonlight Glow Eyeshadow"
-        }
+            let img = document.createElement("img")
+            img.classList.add("productImg")
+            img.src = "./assets/" + product.image
+            productContainer.append(img) 
 
-        // Fetch-anrop POST
-        const response = await fetch("http://localhost:3000/products", {
-            method: "POST", 
-            headers: { "Content-Type": "application/json"}, 
-            body: JSON.stringify(newProduct)
+            let title = document.createElement("h2")
+            title.innerHTML = product.brandName
+            productContainer.append(title) 
 
-        }) // POST måste vi alltid definera att det är Post
-        
-        const data = await response.json()
-            console.log(data)
+            let desc = document.createElement("h3")
+            desc.innerHTML = product.productName
+            productContainer.append(desc) 
+
+            container.append(productContainer)
+        }    
 
         } catch(err) {
             console.error(err)
-        }
     }
 
-    
-document.getElementById("collectBtn").addEventListener("click", getProducts)
-document.getElementById("addBtn").addEventListener("click", addProducts)
+}
 
+const getExternalApi = async (event) => {
+
+    try {
+        const response = await fetch("http://localhost:3000/api/makeup") 
+        const data = await response.json()
+
+        for (let i = 0; i < data.length; i++) {
+            const product = data[i]
+            
+            if(product.product_type === "eyeshadow" && product.brand === "dior") {
+
+            const div = document.getElementById("makeupApi")
+
+            let productDiv = document.createElement("div")
+            productDiv.classList.add("apitDiv")
+
+            let name = document.createElement("h3")
+            name.innerHTML = product.name
+            productDiv.append(name) 
+
+            div.append(productDiv)
+            }
+        } 
+        
+        } catch(err) {
+            console.error(err)
+    }
+} 
+
+
+const saveProduct = async (event) => {
+    
+    try {
+        let brand = document.getElementById("brandName").value 
+        let product = document.getElementById("productName").value
+
+        const newProduct = {
+            brandName: brand,
+            productName: product
+        }
+        console.log(newProduct)
+
+        const response = await fetch("http://localhost:3000/api/products", {
+            method: "POST", 
+            headers: { "Content-Type": "application/json"}, 
+            body: JSON.stringify(newProduct)
+        }) 
+        const data = await response.json() 
+            alert(data) 
+ 
+    } catch(err) {
+        console.error(err)
+    }
+
+    let brand = "";
+    let product = "";
+    
+}
+
+document.getElementById("saveBtn").addEventListener("click", saveProduct)
+document.getElementById("productBtn").addEventListener("click", loadProducts)
 
 window.addEventListener('load', onLoad) 
     

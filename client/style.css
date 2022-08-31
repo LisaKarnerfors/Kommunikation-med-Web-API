@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px; 
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: black; 
+    background-color: white;
+}
+
+header {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 130px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+
+#logo {
+    display: flex;
+    justify-content: center;
+}
+
+.productImg {
+    max-width: 200px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#makeupData {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#makeupApi {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+}
+
+.productDiv {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h2 {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+#saveBtn, #brandName, #productName, #productBtn {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    
+    width: 170px;
+    height: 35px;
+
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+}
+
+#loadApi {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}

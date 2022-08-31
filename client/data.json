@@ -1,0 +1,22 @@
+{
+  "item": [
+      {
+        "id": 1, 
+        "brandName":"Natasha Denona", 
+        "productName":"Sunset Eyeshadow Palette",
+        "image": "411761_swatch.png"
+    },
+      {
+        "id": 2, 
+        "brandName":"Dior", 
+        "productName":"BACKSTAGE EyeShadow Palette",
+        "image": "584040_swatch.png"
+    },
+      {
+        "id": 3, 
+        "brandName":"Sephora Collection", 
+        "productName":"Merry & Bright Eyeshadow Palette",
+        "image": "532112_swatch.png"
+      }
+    ]
+  }
