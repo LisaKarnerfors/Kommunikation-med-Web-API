@@ -41,6 +41,13 @@ header {
     justify-content: center;
 }
 
+.btnContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 #makeupData {
     display: flex;
     flex-direction: row;
@@ -48,6 +55,7 @@ header {
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 30px;
+    flex-wrap: wrap
 }
 
 #makeupApi {
@@ -71,7 +79,7 @@ h3 {
     padding-bottom: 10px;
 }
 
-#saveBtn, #brandName, #productName, #productBtn {
+#saveBtn, #brandName, #productName, #productBtn, #image {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;

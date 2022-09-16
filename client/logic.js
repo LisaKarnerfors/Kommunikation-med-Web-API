@@ -3,6 +3,7 @@ async function onLoad() {
    await getExternalApi()
 }
 
+
 const loadProducts = async (event) => {
 
     try {
@@ -20,7 +21,7 @@ const loadProducts = async (event) => {
 
             let img = document.createElement("img")
             img.classList.add("productImg")
-            img.src = "./assets/" + product.image
+            img.src = "./assets/" + product.image 
             productContainer.append(img) 
 
             let title = document.createElement("h2")
@@ -75,10 +76,12 @@ const saveProduct = async (event) => {
     try {
         let brand = document.getElementById("brandName").value 
         let product = document.getElementById("productName").value
+        let img = document.getElementById("image").value 
 
         const newProduct = {
             brandName: brand,
-            productName: product
+            productName: product,
+            image: img
         }
         console.log(newProduct)
 
@@ -99,4 +102,3 @@ document.getElementById("saveBtn").addEventListener("click", saveProduct)
 document.getElementById("productBtn").addEventListener("click", loadProducts)
 
 window.addEventListener('load', onLoad) 
-    

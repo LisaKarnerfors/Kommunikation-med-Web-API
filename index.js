@@ -49,11 +49,11 @@ app.get("/api/products", (req, res) => {
   }
 })
 
-
 app.post("/api/products", (req, res) => { 
   try { 
-    productList.push({...req.body, ...{id: nanoid()}})
-    res.json("Söker efter produkt!")  
+    productList.push({...req.body, ...{id: nanoid()}}) 
+    console.log(productList)
+    res.json("Ny produkt tillagd!")  
   } catch (err) {
     console.error(err)
   }

@@ -12,7 +12,10 @@ Content-Type: application/json
 
 {
   "productName": "",
-  "brandName": ""
+  "brandName": "",
+  "image": "CAI101_1.webp"
+  
 }
 
 ###
+
